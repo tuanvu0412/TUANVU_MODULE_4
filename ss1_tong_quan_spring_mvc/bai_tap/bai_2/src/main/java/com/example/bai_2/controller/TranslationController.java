@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/translation")
+@RequestMapping()
 public class TranslationController {
     @Autowired
     private ITranslationService translationService;
@@ -24,19 +24,9 @@ public class TranslationController {
     public String search() {
         return "index";
     }
-
     @PostMapping("/result")
     public String meaning(@RequestParam String keyword, Model model) {
-        List<Translation> translations = this.translationService.findAll();
-        for (int i = 0; i < translations.size(); i++) {
-            if (translations.get(i).getEn().equalsIgnoreCase(keyword)) {
-                model.addAttribute("word", translations.get(i).getVi());
-                model.addAttribute("key", keyword);
-                return "mean";
-            } else {
-                System.out.println("từ bạn tìm không có");
-            }
-        }
+        this.translationService.findAll(keyword,model);
         return "mean";
     }
 }

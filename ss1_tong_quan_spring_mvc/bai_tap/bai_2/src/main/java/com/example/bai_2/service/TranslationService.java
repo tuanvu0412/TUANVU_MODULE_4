@@ -5,6 +5,8 @@ import com.example.bai_2.repository.ITranslationRepo;
 import com.example.bai_2.repository.TranslationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -14,7 +16,17 @@ public class TranslationService implements ITranslationService {
     private ITranslationRepo translationRepo;
 
     @Override
-    public List<Translation> findAll() {
+    public List<Translation> findAll(String keyword, Model model) {
+        List<Translation> translations = this.translationRepo.findAll();
+        for (int i = 0; i < translations.size(); i++) {
+            if (translations.get(i).getEn().equalsIgnoreCase(keyword)) {
+                model.addAttribute("word", translations.get(i).getVi());
+                model.addAttribute("key", keyword);
+                return translationRepo.findAll();
+            } else {
+                System.out.println("từ bạn tìm không có");
+            }
+        }
         return translationRepo.findAll();
     }
 }

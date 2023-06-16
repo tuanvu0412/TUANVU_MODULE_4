@@ -5,7 +5,7 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<form method="post" action="/translation/result">
+<form method="post" action="/result">
     <label>Nhập một từ tiếng anh: </label>
     <input type="search" name="keyword">
     <button type="submit">tìm kiếm</button>
