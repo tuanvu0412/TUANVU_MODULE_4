@@ -17,8 +17,12 @@ public class SandwichController {
         return "index";
     }
     @PostMapping("/choice")
-    public String save(@RequestParam("name") String [] name, Model model){
-        model.addAttribute("result", Arrays.toString(name));
+    public String save(@RequestParam(value = "name", required = false) String [] name, Model model){
+        if(name == null){
+            model.addAttribute("msg","bạn phải chọn các mục");
+        }else {
+            model.addAttribute("result", Arrays.toString(name));
+        }
         return "index";
     }
 }
