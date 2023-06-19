@@ -16,17 +16,17 @@ public class TranslationService implements ITranslationService {
     private ITranslationRepo translationRepo;
 
     @Override
-    public List<Translation> findAll(String keyword, Model model) {
-        List<Translation> translations = this.translationRepo.findAll();
+    public List<Translation> findByKey(String keyword, Model model) {
+        List<Translation> translations = this.translationRepo.findByKey();
         for (int i = 0; i < translations.size(); i++) {
             if (translations.get(i).getEn().equalsIgnoreCase(keyword)) {
                 model.addAttribute("word", translations.get(i).getVi());
                 model.addAttribute("key", keyword);
-                return translationRepo.findAll();
+                return translationRepo.findByKey();
             } else {
                 System.out.println("từ bạn tìm không có");
             }
         }
-        return translationRepo.findAll();
+        return translationRepo.findByKey();
     }
 }

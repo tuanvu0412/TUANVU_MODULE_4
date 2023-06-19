@@ -26,7 +26,7 @@ public class TranslationController {
     }
     @PostMapping("/result")
     public String meaning(@RequestParam String keyword, Model model) {
-        this.translationService.findAll(keyword,model);
+        this.translationService.findByKey(keyword,model);
         return "mean";
     }
 }

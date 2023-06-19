@@ -6,5 +6,5 @@ import org.springframework.ui.Model;
 import java.util.List;
 
 public interface ITranslationService {
-    List<Translation> findAll(String keyword, Model model);
+    List<Translation> findByKey(String keyword, Model model);
 }

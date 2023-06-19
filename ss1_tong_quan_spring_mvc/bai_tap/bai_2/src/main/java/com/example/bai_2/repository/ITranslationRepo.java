@@ -6,5 +6,5 @@ import java.util.Collection;
 import java.util.List;
 
 public interface ITranslationRepo {
-    List<Translation> findAll();
+    List<Translation> findByKey();
 }

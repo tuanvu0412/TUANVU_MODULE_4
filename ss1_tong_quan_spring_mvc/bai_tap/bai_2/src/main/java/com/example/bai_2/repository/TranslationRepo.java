@@ -23,7 +23,7 @@ public class TranslationRepo implements ITranslationRepo {
     }
 
     @Override
-    public List<Translation> findAll() {
+    public List<Translation> findByKey() {
         return new ArrayList<>(translationMap.values());
     }
 }
