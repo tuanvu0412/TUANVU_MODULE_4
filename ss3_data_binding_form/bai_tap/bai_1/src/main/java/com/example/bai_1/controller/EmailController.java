@@ -24,8 +24,9 @@ public class EmailController {
     @GetMapping("/setting")
     public String getShowForm(@ModelAttribute("email") BoxEmail email, Model model){
         model.addAttribute("email", new BoxEmail());
-        model.addAttribute("languages",boxEmailService.getEmail());
+        model.addAttribute("languages",boxEmailService.getLanguages());
         model.addAttribute("size",boxEmailService.getSize());
+
         return "update";
     }
     @PostMapping("/detail")

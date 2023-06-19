@@ -36,7 +36,7 @@ public class BoxEmailRepo implements IBoxEmailRepo{
 
     @Override
     public BoxEmail getEmail() {
-        BoxEmail email = new BoxEmail(languagesList.get(0),sizeList.get(2),false,"Thor");
+        BoxEmail email = new BoxEmail(languagesList.get(0),sizeList.get(2),false,"IronMan");
         return email;
     }
 }

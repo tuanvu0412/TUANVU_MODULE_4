@@ -5,6 +5,10 @@ public class BoxEmail {
     private int size;
     private boolean filter;
     private String signature;
+
+    public BoxEmail() {
+    }
+
     public BoxEmail(String languages, int size, boolean filter, String signature) {
         this.languages = languages;
         this.size = size;
@@ -12,8 +16,6 @@ public class BoxEmail {
         this.signature = signature;
     }
 
-    public BoxEmail() {
-    }
 
     public String getLanguages() {
         return languages;
