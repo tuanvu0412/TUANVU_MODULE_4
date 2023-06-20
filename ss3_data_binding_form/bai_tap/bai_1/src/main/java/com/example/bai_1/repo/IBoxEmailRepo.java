@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface IBoxEmailRepo {
     List<String> getLanguages();
-    List<Integer> getSize();
-
+    List<Integer>getSize();
     BoxEmail getEmail();
 }
