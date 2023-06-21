@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-  <form method="post" th:action="@{/product/edit}" action="#" th:object="${product}" novalidate="novalidate">
+  <form method="post" th:action="@{/edit}" action="#" th:object="${product}" novalidate="novalidate">
     <input type="hidden" th:field="*{id}"/>
       <div>
           <label>Tên Sản Phẩm</label>

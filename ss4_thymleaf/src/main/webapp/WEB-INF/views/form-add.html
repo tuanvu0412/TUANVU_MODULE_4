@@ -5,11 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/product/add" th:object="${product}">
-    <div>
-        <label for="id">ID:</label>
-        <input id="id" type="number" th:field="*{id}">
-    </div>
+<form method="post" action="/add" th:object="${product}">
     <div>
         <label for="name">name:</label>
         <input id="name" type="text" th:field="*{name}">

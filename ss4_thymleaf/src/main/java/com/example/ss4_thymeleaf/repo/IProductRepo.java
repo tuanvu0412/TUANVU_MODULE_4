@@ -12,4 +12,5 @@ public interface IProductRepo {
     void update( Product product);
 
     void remove(int id);
+    List<Product> findOne(String name);
 }

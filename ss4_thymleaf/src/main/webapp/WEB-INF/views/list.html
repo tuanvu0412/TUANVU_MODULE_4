@@ -26,10 +26,12 @@
 </head>
 <body>
 <H1 style="text-align: center; background-color: dodgerblue">QUẢN LÝ SẢN PHẨM</H1>
-<a href="/product/form-add" style="">Thêm Sản Phẩm</a>
+<a href="/form-add" style="">Thêm Sản Phẩm</a>
 <div th:if="${msg} !=null" th:text="${msg}"></div>
-<div th:if="${msg1} !=null" th:text="${msg1}"></div>
-<div th:if="${msg2} !=null" th:text="${msg2}"></div>
+<form method="get" action="/search">
+    <input type="text" name="search" placeholder="tìm kiếm sản phẩm">
+    <input type="submit">
+</form>
 <table class="table" border="1">
     <thead class="thead">
     <tr>
@@ -43,9 +45,9 @@
         <td th:text="${list.id}"></td>
         <td th:text="${list.name}"></td>
         <td th:text="${list.price}"></td>
-        <td><a th:href="@{/product/{id}/detail(id=${list.getId()})}">Detail</a></td>
-        <td><a th:href="@{/product/{id}/edit(id=${list.getId()})}">edit</a></td>
-        <td><a th:href="@{/product/{id}/delete(id=${list.getId()})}">delete</a></td>
+        <td><a th:href="@{/{id}/detail(id=${list.getId()})}">Detail</a></td>
+        <td><a th:href="@{/{id}/edit(id=${list.getId()})}">edit</a></td>
+        <td><a th:href="@{/{id}/delete(id=${list.getId()})}">delete</a></td>
     </tr>
     </tbody>
 </table>
