@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <form method="post" th:action="@{/blog/edit}" action="#" th:object="${product}" novalidate="novalidate">
+    <input type="hidden" th:field="*{id}"/>
+      <div>
+          <label>Tên Nội Dung</label>
+          <input type="text" th:field="*{name}">
+      </div>
+      <div>
+          <label>Nội Dung</label>
+          <input type="text" th:field="*{content}">
+      </div>
+      <div>
+          <label>Thời Gian</label>
+          <input type="text" th:field="*{time}">
+      </div>
+      <input type="submit">
+  </form>
+</div>
+</body>
+</html>

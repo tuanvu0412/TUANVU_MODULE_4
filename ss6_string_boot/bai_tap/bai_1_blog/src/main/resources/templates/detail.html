@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .table{
+            font-size: x-large;
+            width: 100%;
+            background-color: deepskyblue;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align:center; color: dodgerblue">Nội Dung Chi Tiết</h1>
+<a href="/list">Trở về trang chủ</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th>TÊN BLOG</th>
+        <th>NỘI Dung</th>
+        <th>THỜI GIAN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="list, listStat:${blog}">
+        <td th:text="${list.name}"></td>
+        <td th:text="${list.content}"></td>
+        <td th:text="${list.time}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+</body>
+</html>
