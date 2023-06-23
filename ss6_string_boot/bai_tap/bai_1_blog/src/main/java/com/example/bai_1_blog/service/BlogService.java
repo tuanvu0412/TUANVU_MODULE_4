@@ -14,10 +14,10 @@ public class BlogService implements IBlogService {
     @Autowired
     private IBlogRepo blogRepo;
 
-    @Override
-    public List<Blog> getList() {
-        return blogRepo.findAllByFlagDeleteIsFalse();
-    }
+//    @Override
+//    public List<Blog> getList() {
+//        return blogRepo.findAllByFlagDeleteIsFalse();
+//    }
 
     @Override
     public void addNewBlog(Blog blog) {
@@ -36,7 +36,9 @@ public class BlogService implements IBlogService {
 
     @Override
     public void remove(int id) {
-            this.blogRepo.deleteById(id);
+        Blog blog=blogRepo.getBlogByIdAndFlagDeleteIsFalse(id);
+        blog.setFlagDelete(true);
+        blogRepo.save(blog);
     }
 
     @Override
@@ -44,10 +46,14 @@ public class BlogService implements IBlogService {
         return this.blogRepo.searchByName(name,pageable);
     }
 
-    @Override
-    public Page<Blog> getBlogWithPageable(Pageable pageable) {
-        return blogRepo.findAll(pageable);
-    }
+//    @Override
+//    public Page<Blog> getBlogWithPageable(Pageable pageable) {
+//        return blogRepo.findAll(pageable);
+//    }
 
+    @Override
+    public Page<Blog> findAllByFlagDeleteIsFalse(Pageable pageable) {
+        return blogRepo.findAllByFlagDeleteIsFalse(pageable);
+    }
 
 }

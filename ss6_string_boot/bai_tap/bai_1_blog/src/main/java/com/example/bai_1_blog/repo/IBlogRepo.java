@@ -14,6 +14,7 @@ public interface IBlogRepo extends JpaRepository<Blog,Integer> {
     Page<Blog> searchByName(@Param(value = "name")String name, Pageable pageable);
 //   @Query(value ="update  Blogs set name= :name,content= :content,times=:times where id= :id",nativeQuery = true )
 //    void updateBlogsByIdIs(Blog blog);
-    List<Blog> findAllByFlagDeleteIsFalse();
+    Page<Blog> findAllByFlagDeleteIsFalse(Pageable pageable);
+    Blog getBlogByIdAndFlagDeleteIsFalse(int id);
 }
 

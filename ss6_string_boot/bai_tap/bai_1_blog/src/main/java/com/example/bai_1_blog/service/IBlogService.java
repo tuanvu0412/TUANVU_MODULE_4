@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IBlogService {
-    List<Blog> getList();
+//    List<Blog> getList();
 
     void addNewBlog(Blog blog);
 
@@ -18,5 +18,5 @@ public interface IBlogService {
     void remove(int id);
 
     Page<Blog> findOne(String name,Pageable pageable);
-    Page<Blog> getBlogWithPageable(Pageable pageable);
+    Page<Blog> findAllByFlagDeleteIsFalse(Pageable pageable);
 }

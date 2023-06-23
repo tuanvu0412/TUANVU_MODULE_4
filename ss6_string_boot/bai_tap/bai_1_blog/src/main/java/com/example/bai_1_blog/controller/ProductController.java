@@ -18,7 +18,7 @@ public class ProductController {
     private IBlogService blogService;
     @GetMapping
     public String getBlogList(@PageableDefault(size=1)Pageable pageable,Model model){
-        model.addAttribute("blogs",this.blogService.getBlogWithPageable(pageable));
+        model.addAttribute("blogs",this.blogService.findAllByFlagDeleteIsFalse(pageable));
         return "/list";
     }
 
