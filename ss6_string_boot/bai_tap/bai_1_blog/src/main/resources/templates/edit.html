@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .container{
+            width: 100%;
+            font-size: x-large;
+            background-color: lightskyblue;
+        }
+    </style>
 </head>
 <body>
-<div>
+<div class="container">
   <form method="post" th:action="@{/blog/edit}" action="#" th:object="${product}" novalidate="novalidate">
     <input type="hidden" th:field="*{id}"/>
       <div>
@@ -14,11 +21,15 @@
       </div>
       <div>
           <label>Nội Dung</label>
-          <input type="text" th:field="*{content}">
+          <textarea cols="20" rows="10" type="text" th:field="*{content}"></textarea>
       </div>
       <div>
           <label>Thời Gian</label>
-          <input type="text" th:field="*{time}">
+          <input type="text" th:field="*{times}">
+      </div>
+      <div>
+          <label>Hình Ảnh</label>
+          <input type="text" th:field="*{img}">
       </div>
       <input type="submit">
   </form>

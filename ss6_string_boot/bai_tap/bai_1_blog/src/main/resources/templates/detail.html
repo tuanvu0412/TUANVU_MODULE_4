@@ -13,24 +13,16 @@
     </style>
 </head>
 <body>
-<h1 style="text-align:center; color: dodgerblue">Nội Dung Chi Tiết</h1>
-<a href="/list">Trở về trang chủ</a>
-<table class="table">
-    <thead>
-    <tr>
-        <th>TÊN BLOG</th>
-        <th>NỘI Dung</th>
-        <th>THỜI GIAN</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="list, listStat:${blog}">
-        <td th:text="${list.name}"></td>
-        <td th:text="${list.content}"></td>
-        <td th:text="${list.time}"></td>
-    </tr>
-    </tbody>
-</table>
+<h1 style="text-align:center; color: dodgerblue;background-color: greenyellow">Nội Dung Blog</h1>
+<a href="/blog">Trở về trang chủ</a><br>
+<div class="row container">
+    <div th:each="list, listStat:${blog}">
+        <img style="width: 100%" th:src="${list.img}">
+        <h1 th:text="${list.name}"></h1>
+        <h4 th:text="${list.content}"></h4>
+        <p th:text="${list.times}"></p>
+    </div>
+</div>
 </body>
 </html>
 </body>

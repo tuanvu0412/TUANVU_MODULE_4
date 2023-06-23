@@ -10,17 +10,23 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+    @Column(columnDefinition ="LONGTEXT")
     private String content;
     private LocalDate times;
 
+    @Column(columnDefinition ="LONGTEXT")
+    private String img;
+    private boolean flagDelete=false;
     public Blog() {
     }
 
-    public Blog(int id, String name, String content, LocalDate time) {
+    public Blog(int id, String name, String content, LocalDate time,String img,boolean flagDelete) {
         this.id = id;
         this.name = name;
         this.content = content;
         this.times = time;
+        this.img=img;
+        this.flagDelete=flagDelete;
     }
 
     public int getId() {
@@ -53,5 +59,21 @@ public class Blog {
 
     public void setTimes(LocalDate times) {
         this.times = times;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
     }
 }
