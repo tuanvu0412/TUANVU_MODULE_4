@@ -1,4 +1,5 @@
 package com.example.bai_1_blog.controller;
+
 import com.example.bai_1_blog.model.Blog;
 import com.example.bai_1_blog.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.time.LocalDate;
 
 @Controller
@@ -16,9 +18,10 @@ import java.time.LocalDate;
 public class ProductController {
     @Autowired
     private IBlogService blogService;
+
     @GetMapping
-    public String getBlogList(@PageableDefault(size=1)Pageable pageable,Model model){
-        model.addAttribute("blogs",this.blogService.findAllByFlagDeleteIsFalse(pageable));
+    public String getBlogList(@PageableDefault(size = 1) Pageable pageable, Model model) {
+        model.addAttribute("blogs", this.blogService.findAllByFlagDeleteIsFalse(pageable));
         return "/list";
     }
 
@@ -82,9 +85,10 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam(name="name") String name,Pageable pageable, Model model) {
-        Page<Blog> blogs = blogService.findOne(name,pageable);
+    public String search(@RequestParam(name = "name") String name, Pageable pageable, Model model) {
+        Page<Blog> blogs = blogService.findOne(name, pageable);
         model.addAttribute("blogs", blogs);
+        model.addAttribute("zzz", name);
         return "/list";
     }
 }

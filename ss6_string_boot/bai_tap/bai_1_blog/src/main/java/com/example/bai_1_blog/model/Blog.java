@@ -4,29 +4,30 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="Blogs")
+@Table(name = "Blogs")
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    @Column(columnDefinition ="LONGTEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String content;
     private LocalDate times;
 
-    @Column(columnDefinition ="LONGTEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String img;
-    private boolean flagDelete=false;
+    private boolean flagDelete = false;
+
     public Blog() {
     }
 
-    public Blog(int id, String name, String content, LocalDate time,String img,boolean flagDelete) {
+    public Blog(int id, String name, String content, LocalDate time, String img, boolean flagDelete) {
         this.id = id;
         this.name = name;
         this.content = content;
         this.times = time;
-        this.img=img;
-        this.flagDelete=flagDelete;
+        this.img = img;
+        this.flagDelete = flagDelete;
     }
 
     public int getId() {

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class BlogService implements IBlogService {
     @Autowired
@@ -26,7 +27,7 @@ public class BlogService implements IBlogService {
 
     @Override
     public Blog findById(int id) {
-        return this.blogRepo.findById(id).orElseThrow(()->new IllegalArgumentException("not found Blog by id"+id));
+        return this.blogRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("not found Blog by id" + id));
     }
 
     @Override
@@ -36,14 +37,14 @@ public class BlogService implements IBlogService {
 
     @Override
     public void remove(int id) {
-        Blog blog=blogRepo.getBlogByIdAndFlagDeleteIsFalse(id);
+        Blog blog = blogRepo.getBlogByIdAndFlagDeleteIsFalse(id);
         blog.setFlagDelete(true);
         blogRepo.save(blog);
     }
 
     @Override
-    public Page<Blog> findOne(String name,Pageable pageable) {
-        return this.blogRepo.searchByName(name,pageable);
+    public Page<Blog> findOne(String name, Pageable pageable) {
+        return this.blogRepo.searchByName(name, pageable);
     }
 
 //    @Override

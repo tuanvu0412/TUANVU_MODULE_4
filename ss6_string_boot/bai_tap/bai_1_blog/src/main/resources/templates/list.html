@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1">
@@ -37,8 +36,8 @@
     <div class="d-float">
         <h3>BLOG of TZu</h3>
         <div class="add">
-            <form method="get" action="/blog/search">
-                <input type="text" name="name" placeholder="tìm kiếm Blog">
+            <form method="get" action="/blog/search" >
+                <input type="text" name="name" placeholder="tìm kiếm Blog" th:value="${zzz}">
                 <button type="submit">search</button>
             </form>
         </div>
