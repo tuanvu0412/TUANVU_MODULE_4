@@ -2,6 +2,7 @@ package com.example.bai_1_blog.controller;
 
 import com.example.bai_1_blog.model.Blog;
 import com.example.bai_1_blog.service.IBlogService;
+import com.example.bai_1_blog.service.IBlogTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,29 +12,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
-
 @Controller
 @RequestMapping("/blog")
-public class ProductController {
+public class BlogController {
     @Autowired
     private IBlogService blogService;
+    @Autowired
+    private IBlogTypeService blogTypeService;
 
     @GetMapping
     public String getBlogList(@PageableDefault(size = 1) Pageable pageable, Model model) {
-        model.addAttribute("blogs", this.blogService.findAllByFlagDeleteIsFalse(pageable));
+        model.addAttribute("blog", this.blogService.findAllByFlagDeleteIsFalse(pageable));
         return "/list";
     }
 
     @GetMapping("/form-add")
     public String getFormAdd(Model model) {
         model.addAttribute("blog", new Blog());
+        model.addAttribute("blogType", this.blogTypeService.getList());
         return "/form-add";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes) {
-        blog.setTimes(LocalDate.now());
         blogService.addNewBlog(blog);
         redirectAttributes.addFlashAttribute("msg", "thêm mới thành công");
         return "redirect:/blog";
@@ -73,8 +74,8 @@ public class ProductController {
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes) {
-        if (blogService.findById(blog.getId()) == null) {
+    public String edit(@ModelAttribute int id,Blog blog, RedirectAttributes redirectAttributes) {
+        if (blogService.findById(id) == null) {
             redirectAttributes.addFlashAttribute("msg", "sửa không thành công");
             return "redirect:/blog";
         } else {

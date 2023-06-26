@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a style="width: 40rem;width: 100px;margin-left: 500px;margin-bottom: 20px" th:href="@{/blogType/form-add}"
+   class="btn btn-dark">Thêm Mới</a>
+<p th:text="${msg}"></p>
+<form>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Name</th>
+        </tr>
+        <tr th:each="blogType, item : ${blogType.content}">
+            <td th:text="${item.count}"></td>
+            <td th:text="${blogType.name}"></td>
+            <td>
+                <a th:href="@{/blogTypes/{id}/detail(id=${blogType.id})}">Detail</a>
+                <a th:href="@{/blogTypes/{id}/edit(id=${blogType.id})}">Edit</a>
+                <a th:href="@{/blogTypes/{id}/delete(id=${blogType.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</form>
+</div>
+</body>
+</html>

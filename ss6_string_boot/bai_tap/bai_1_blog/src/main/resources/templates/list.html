@@ -43,7 +43,7 @@
         </div>
     </div>
     <div>
-        <a href="/blog/form-add" style="">Thêm Blog</a>
+        <a href="/blogType/form-add" style="">Thêm Blog</a>
         <div th:if="${msg} !=null" th:text="${msg}"></div>
     </div>
     <div>
@@ -58,6 +58,9 @@
                         </h2>
                         <br>
                         <td th:text="${list.times}" style="color: black; font-size: x-large"></td>
+                        <br>
+                        <br>
+                        <td th:text="${list.blogType.name}" style="color: black; font-size: x-large"></td>
                         <br>
                         <div class="dropdown" style="position: absolute;top: auto;">
                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"

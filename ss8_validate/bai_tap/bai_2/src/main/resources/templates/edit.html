@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/music/edit}" th:object="${music}">
+    <div>
+        <label for="id">ID:</label>
+        <input id="id" type="number" th:field="*{id}" readonly/>
+    </div>
+    <div>
+        <label for="name">Name of The Song:</label>
+        <input id="name" type="text" th:field="*{nameOfTheSong}"/>
+        <span style="color: red" th:if="${#fields.hasErrors('nameOfTheSong')}" th:errors="*{nameOfTheSong}"></span>
+    </div>
+    <div>
+        <label for="nameSinger">Name Of Singers:</label>
+        <input id="nameSinger" type="text" th:field="*{nameOfSingers}"/>
+        <span style="color: red" th:if="${#fields.hasErrors('nameOfSingers')}" th:errors="*{nameOfSingers}"></span>
+    </div>
+    <div>
+        <label for="kindOfMusic">Kind Of Music:</label>
+        <input id="kindOfMusic" type="text" th:field="*{kindOfMusic}"/>
+        <span style="color: red" th:if="${#fields.hasErrors('kindOfMusic')}" th:errors="*{kindOfMusic}"></span>
+    </div>
+    <input type="submit"/>
+</form>
+</body>
+</html>

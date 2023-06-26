@@ -16,17 +16,21 @@ public class Blog {
 
     @Column(columnDefinition = "LONGTEXT")
     private String img;
+    @ManyToOne
+    @JoinColumn(name="idType", nullable = false)
+    private BlogType blogType;
     private boolean flagDelete = false;
 
     public Blog() {
     }
 
-    public Blog(int id, String name, String content, LocalDate time, String img, boolean flagDelete) {
+    public Blog(int id, String name, String content, LocalDate times, String img, BlogType blogType, boolean flagDelete) {
         this.id = id;
         this.name = name;
         this.content = content;
-        this.times = time;
+        this.times = times;
         this.img = img;
+        this.blogType = blogType;
         this.flagDelete = flagDelete;
     }
 
@@ -68,6 +72,14 @@ public class Blog {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public BlogType getBlogType() {
+        return blogType;
+    }
+
+    public void setBlogType(BlogType blogType) {
+        this.blogType = blogType;
     }
 
     public boolean isFlagDelete() {
