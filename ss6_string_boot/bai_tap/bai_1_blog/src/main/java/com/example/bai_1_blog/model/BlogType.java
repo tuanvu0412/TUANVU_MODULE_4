@@ -10,21 +10,16 @@ public class BlogType {
     private int idType;
     private String name;
 
+    private boolean flagIsDelete=false;
     public BlogType() {
     }
 
-    public BlogType(int idType, String name) {
+    public BlogType(int idType, String name,boolean flagIsDelete) {
         this.idType = idType;
         this.name = name;
+        this.flagIsDelete=flagIsDelete;
     }
 
-    public int getId() {
-        return idType;
-    }
-
-    public void setId(int idType) {
-        this.idType=idType;
-    }
 
     public String getName() {
         return name;
@@ -32,5 +27,21 @@ public class BlogType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getIdType() {
+        return idType;
+    }
+
+    public void setIdType(int idType) {
+        this.idType = idType;
+    }
+
+    public boolean isFlagIsDelete() {
+        return flagIsDelete;
+    }
+
+    public void setFlagIsDelete(boolean flagIsDelete) {
+        this.flagIsDelete = flagIsDelete;
     }
 }

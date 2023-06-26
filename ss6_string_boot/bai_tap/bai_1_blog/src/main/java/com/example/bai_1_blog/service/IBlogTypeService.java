@@ -10,7 +10,7 @@ public interface IBlogTypeService {
 
     void addNewBlog(BlogType blogType);
 
-    Blog findById(int id);
+    BlogType findById(int id);
 
     void update(BlogType blogType);
 

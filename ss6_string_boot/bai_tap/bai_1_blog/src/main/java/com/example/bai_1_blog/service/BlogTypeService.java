@@ -23,7 +23,12 @@ public class BlogTypeService implements IBlogTypeService{
     }
 
     @Override
-    public Blog findById(int id) {
+    public BlogType findById(int id) {
+        for (int i = 0; i < getList().size(); i++) {
+            if(getList().get(i).getIdType()==id){
+                return getList().get(i);
+            }
+        }
         return null;
     }
 
@@ -34,6 +39,6 @@ public class BlogTypeService implements IBlogTypeService{
 
     @Override
     public void remove(int id) {
-        blogTypeRepo.deleteById(id);
+        blogTypeRepo.getBlogByIdAndFlagDeleteIsFalse(id);
     }
 }
