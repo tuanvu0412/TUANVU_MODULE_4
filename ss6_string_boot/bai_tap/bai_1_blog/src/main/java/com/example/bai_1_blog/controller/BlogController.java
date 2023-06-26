@@ -47,6 +47,7 @@ public class BlogController {
             return "redirect:/blog";
         } else {
             model.addAttribute("blog", blogService.findById(id));
+            model.addAttribute("blogType", blogTypeService.getList());
         }
         return "/detail";
     }
@@ -69,6 +70,7 @@ public class BlogController {
             return "redirect:/blog";
         } else {
             model.addAttribute("product", blogService.findById(id));
+            model.addAttribute("blogType", blogTypeService.getList());
             return "/edit";
         }
     }

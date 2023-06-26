@@ -59,12 +59,12 @@ public class BlogTypeController {
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute int id,BlogType blog, RedirectAttributes redirectAttributes) {
+    public String edit(@ModelAttribute int id,BlogType blogType, RedirectAttributes redirectAttributes) {
         if (blogTypeService.findById(id) == null) {
             redirectAttributes.addFlashAttribute("msg", "sửa không thành công");
             return "redirect:/blogTypes";
         } else {
-            blogTypeService.update(blog);
+            blogTypeService.update(blogType);
             redirectAttributes.addFlashAttribute("msg", "sửa thành công");
         }
         return "redirect:/blogTypes";

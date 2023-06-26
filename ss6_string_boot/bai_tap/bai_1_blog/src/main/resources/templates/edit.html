@@ -31,6 +31,13 @@
             <label>Hình Ảnh</label>
             <input type="text" th:field="*{img}">
         </div>
+        <div>
+            <label for="blogType">BlogType:</label>
+            <select id="blogType" th:field="*{blogType}">
+                <option th:each="b, items : ${blogType}" th:text="${b.name}" th:value="${b.id}">
+                </option>
+            </select>
+        </div>
         <input type="submit">
     </form>
 </div>
