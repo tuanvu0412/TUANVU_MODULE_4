@@ -32,7 +32,7 @@ public class MusicController {
         return "/form-add";
     }
 
-    @PostMapping("/validateAddMusic")
+    @PostMapping("/add")
     public String addMusic(@Valid @ModelAttribute(name = "add") MusicDto musicDto, BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
         new MusicDto().validate(musicDto, bindingResult);

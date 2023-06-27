@@ -14,15 +14,15 @@ public class MusicDto implements Validator {
     private int id;
     @NotBlank
     @Size(max = 800)
-    @Pattern(regexp = "^[^@;,.\\-=+!#$%&<>]{1,800}$",message = "không đúng định dạng")
+    @Pattern(regexp = "^[^@;,.\\-=+!#$%&<>]{1,800}$",message = "không được chứa kí tự đặc biệt")
     private String nameOfTheSong;
     @NotBlank
     @Size(max = 300)
-    @Pattern(regexp = "^[^@;,.\\-=+!#$%&<>]{1,800}$",message = "không đúng định dạng")
+    @Pattern(regexp = "^[^@;,.\\-=+!#$%&<>]{1,800}$",message = "không được chứa kí tự đặc biệt")
     private String nameOfSingers;
     @NotBlank
     @Size(max = 1000)
-    @Pattern(regexp = "^[^@;,.\\-=+!#$%&<>]{1,800}$",message = "không đúng định dạng")
+    @Pattern(regexp = "^[^@;,.\\-=+!#$%&<>]{1,800}$",message = "không được chứa kí tự đặc biệt")
     private String kindOfMusic;
 
     public MusicDto() {
