@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     @GetMapping()
     public String getFormUser(Model model){
-      model.addAttribute("user",new User());
+      model.addAttribute("user",new UserDto());
         return "/index";
     }
     @PostMapping("/validateUser")
