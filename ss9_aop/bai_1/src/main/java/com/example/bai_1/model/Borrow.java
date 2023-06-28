@@ -1,6 +1,7 @@
 package com.example.bai_1.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity

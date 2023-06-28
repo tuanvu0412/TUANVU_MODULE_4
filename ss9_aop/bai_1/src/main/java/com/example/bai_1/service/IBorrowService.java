@@ -13,6 +13,9 @@ public interface IBorrowService {
     void delete(Borrow borrow);
 
     Borrow findById(int id);
-    void borrowBook(Borrow borrow);
-    void checkBorrowCode(String borrowCode);
+
+    Borrow findByBorrowCode(String borrowCode);
+
+//    void update(int id);
+
 }

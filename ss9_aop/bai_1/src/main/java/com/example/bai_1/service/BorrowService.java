@@ -36,30 +36,20 @@ public class BorrowService implements IBorrowService{
     public Borrow findById(int id) {
         for (int i = 0; i < getListBorrow().size(); i++) {
             if(getListBorrow().get(i).getId()==id){
-                return getListBorrow().get(i);
+                return  getListBorrow().get(i);
             }
         }
         return null;
     }
 
     @Override
-    public void borrowBook(Borrow borrow){
-        Book book=bookRepo.findById(borrow.getId()).orElse(null);
-        if(book==null||book.getQuantity()<=0){
-            throw  new RuntimeException("sách không còn trong kho");
+    public Borrow findByBorrowCode(String borrowCode) {
+        for (int i = 0; i < getListBorrow().size(); i++) {
+            if(getListBorrow().get(i).getBorrowCode().equals(borrowCode)){
+                return getListBorrow().get(i);
+            }
         }
-        book.setQuantity(book.getQuantity()-1);
-        bookRepo.save(book);
-        borrowRepo.save(borrow);
+        return null;
     }
 
-    @Override
-    public void checkBorrowCode(String borrowCode) {
-        Borrow borrow=borrowRepo.findByBorrowCode(borrowCode);
-        if(borrow==null){
-            throw new RuntimeException("mã số trả sách không hợp lệ");
-        }
-        borrow.setReturnDate(borrowCode);
-        borrowRepo.save(borrow);
-    }
 }

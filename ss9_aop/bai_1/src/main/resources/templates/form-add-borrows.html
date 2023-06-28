@@ -25,7 +25,7 @@
     </div>
     <div>
         <label for="books">Book:</label>
-        <select id="books"  th:field="${books}">
+        <select id="books"  th:field="*{book}">
                 <option th:each="b, items:${books}" th:text="${b.title}" th:value="${b.id}"></option>
         </select>
     </div>

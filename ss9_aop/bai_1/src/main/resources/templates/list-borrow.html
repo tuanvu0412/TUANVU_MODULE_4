@@ -7,6 +7,8 @@
 <body>
 <a href="/Borrows/form-add-borrows">thue sach</a>
 <a href="/books">quay về trang sách</a>
+<p th:text="${msg}"></p>
+<p th:text="${msg1}"></p>
 <form th:object="${borrows}">
   <table>
     <thead>
@@ -27,6 +29,9 @@
       <td th:text="${list.returnDate}"></td>
       <td th:text="${list.borrowCode}"></td>
       <td th:text="${list.book.title}"></td>
+      <td>
+        <a th:href="@{/Borrows/{id}/return(id=${list.getId()})}">ReturnBook</a>
+      </td>
     </tr>
     </tbody>
   </table>
