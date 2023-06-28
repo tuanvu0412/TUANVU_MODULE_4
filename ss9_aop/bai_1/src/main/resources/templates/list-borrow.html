@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/Borrows/form-add-borrows">thue sach</a>
+<a href="/books">quay về trang sách</a>
+<form th:object="${borrows}">
+  <table>
+    <thead>
+    <tr>
+      <th>STT</th>
+      <th>borrowName</th>
+      <th>borrowDate</th>
+      <th>returnDate</th>
+      <th>borrowCode</th>
+      <th>Book</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="list, loop:${borrows}">
+      <td th:text="${loop.count}"></td>
+      <td th:text="${list.borrowName}"></td>
+      <td th:text="${list.borrowDate}"></td>
+      <td th:text="${list.returnDate}"></td>
+      <td th:text="${list.borrowCode}"></td>
+      <td th:text="${list.book.title}"></td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/Borrows">trở về trang thuê sách</a>
+<form method="post" action="/Borrows/add" th:object="${borrows}">
+    <div>
+        <label for="borrowName">borrowName:</label>
+        <input id="borrowName" type="text" th:field="*{borrowName}">
+    </div>
+    <div>
+        <label for="borrowDate">borrowDate:</label>
+        <input id="borrowDate" type="text" th:field="*{borrowDate}">
+    </div>
+    <div>
+        <label for="returnDate">returnDate:</label>
+        <input id="returnDate" type="text" th:field="*{returnDate}">
+    </div>
+    <div>
+        <label for="borrowCode">borrowCode:</label>
+        <input id="borrowCode" type="number" th:field="*{borrowCode}">
+    </div>
+    <div>
+        <label for="books">Book:</label>
+        <select id="books"  th:field="${books}">
+                <option th:each="b, items:${books}" th:text="${b.title}" th:value="${b.id}"></option>
+        </select>
+    </div>
+    <input type="submit">
+</form>
+</body>
+</html>

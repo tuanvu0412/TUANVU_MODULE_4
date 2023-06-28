@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/books/form-add">thêm mới</a>
+<a href="/Borrows/form-add-borrows">Thuê Sách</a>
+<form th:object="${books}">
+  <table>
+    <thead>
+        <tr>
+          <th>STT</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Description</th>
+          <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="list, loop:${books}">
+              <td th:text="${loop.count}"></td>
+              <td th:text="${list.title}"></td>
+              <td th:text="${list.author}"></td>
+              <td th:text="${list.description}"></td>
+              <td th:text="${list.quantity}"></td>
+              <td><a th:href="@{/books/{id}/delete(id=${list.getId()})}">delete</a></td>
+        </tr>
+    </tbody>
+  </table>
+</form>
+</body>
+</html>
