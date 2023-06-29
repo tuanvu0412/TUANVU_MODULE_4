@@ -42,7 +42,7 @@ public class BorrowController {
             throw new RuntimeException("sách đã hết");
         } else {
             book.setQuantity(book.getQuantity() - 1);
-            bookService.add(book);
+            borrowService.add(borrow);
             redirectAttributes.addFlashAttribute("msg", "bạn đã thuê thành công");
             redirectAttributes.addFlashAttribute("msg1","mã thuê của bạn là : "+borrow.getBorrowCode());
             return "redirect:/Borrows";
@@ -54,13 +54,14 @@ public class BorrowController {
 //        }
     }
     @GetMapping("/{id}/return")
-    public String returnBook(@RequestParam(name="id")Borrow borrow,RedirectAttributes redirectAttributes){
+    public String returnBook(Borrow borrow,RedirectAttributes redirectAttributes){
         Book book=bookService.findById(borrow.getBook().getQuantity());
         if(borrowService.findByBorrowCode(borrow.getBorrowCode())==null){
             redirectAttributes.addFlashAttribute("mã sách bạn muốn trả chưa đúng");
             return "redirect:/Borrows";
         }else {
             book.setQuantity(book.getQuantity()+1);
+            bookService.add(book);
             borrowService.delete(borrow);
             redirectAttributes.addFlashAttribute("msg","bạn đã trả thành công");
             return "redirect:/Borrows";

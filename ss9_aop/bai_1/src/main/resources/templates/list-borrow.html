@@ -30,7 +30,7 @@
       <td th:text="${list.borrowCode}"></td>
       <td th:text="${list.book.title}"></td>
       <td>
-        <a th:href="@{/Borrows/{id}/return(id=${list.getId()})}">ReturnBook</a>
+        <a th:href="@{/Borrows/{id}/return(id=${list.getBorrowCode()})}">ReturnBook</a>
       </td>
     </tr>
     </tbody>
