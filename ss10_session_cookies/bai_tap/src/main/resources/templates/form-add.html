@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="/add" th:object="${product}">
+      <div>
+        <label for="name">name:</label>
+        <input id="name" type="text" th:field="*{name}">
+      </div>
+      <div>
+        <label for="Price">Price:</label>
+        <input id="Price" th:field="*{price}">
+      </div>
+      <input type="submit">
+</form>
+</body>
+</html>
