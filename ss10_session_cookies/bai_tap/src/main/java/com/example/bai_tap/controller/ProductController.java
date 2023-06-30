@@ -26,12 +26,14 @@ import java.util.stream.Collectors;
 public class ProductController {
     @Autowired
     private IProductService productService;
+
     @GetMapping("/shopping-cart")
-    public ModelAndView showCart (@SessionAttribute("cart") Cart cart){
-        ModelAndView modelAndView = new ModelAndView("/cart");
-        modelAndView.addObject("cart",cart);
+    public ModelAndView showCart(@SessionAttribute("cart") Cart cart) {
+        ModelAndView modelAndView = new ModelAndView("/cart", "cart", cart);
+        modelAndView.addObject("cart", cart);
         return modelAndView;
     }
+
     @ModelAttribute("cart")
     public Cart setupCart() {
         return new Cart();
@@ -39,7 +41,7 @@ public class ProductController {
 
     @GetMapping("/shop")
     public ModelAndView showShop() {
-        ModelAndView modelAndView = new ModelAndView("/shop");
+        ModelAndView modelAndView = new ModelAndView("/shop", "product", productService.findAll());
         modelAndView.addObject("products", productService.findAll());
         return modelAndView;
     }
@@ -54,27 +56,35 @@ public class ProductController {
             cart.addProduct(productOptional.get());
             return "redirect:/shopping-cart";
         }
-        if(action.equals("sub")){
+        if (action.equals("sub")) {
             cart.subProduct(productOptional.get());
             return "redirect:/shopping-cart";
         }
         cart.addProduct(productOptional.get());
         return "redirect:/shop";
     }
+
     @GetMapping("/form-add")
-    public String showFormAdd(Model model){
-        model.addAttribute("product",new Product());
+    public String showFormAdd(Model model) {
+        model.addAttribute("product", new Product());
         return "/form-add";
     }
+
     @PostMapping("/add")
-    public String add(@ModelAttribute(name="product")Product product,RedirectAttributes redirectAttributes){
+    public String add(@ModelAttribute(name = "product") Product product, RedirectAttributes redirectAttributes) {
         productService.add(product);
-        redirectAttributes.addFlashAttribute("msg","thêm thành công");
+        redirectAttributes.addFlashAttribute("msg", "thêm thành công");
         return "/shop";
     }
+
     @GetMapping("/detail/{id}")
-    public String detail(@PathVariable Long id,Model model){
-        model.addAttribute("product",this.productService.findByProduct(id));
-        return "/detail";
+    public String detail(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+        if (productService.findByProduct(id) == null) {
+            redirectAttributes.addFlashAttribute("msg", "không tìm thấy sản phẩm");
+            return "/shop";
+        } else {
+            model.addAttribute("product", this.productService.findByProduct(id));
+            return "/detail";
+        }
     }
 }
