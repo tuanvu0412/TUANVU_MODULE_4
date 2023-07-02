@@ -1,6 +1,4 @@
 package com.example.bai_tap.controller;
-
-import com.example.bai_tap.dto.BlogDto;
 import com.example.bai_tap.model.Blog;
 import com.example.bai_tap.service.IBlogService;
 import com.example.bai_tap.service.IBlogTypeService;
@@ -12,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -43,7 +40,7 @@ public class BlogController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void createBlog(@Valid @RequestBody Blog blog) {
+    public void createBlog( @RequestBody Blog blog) {
             this.blogService.addNewBlog(blog);
     }
 
