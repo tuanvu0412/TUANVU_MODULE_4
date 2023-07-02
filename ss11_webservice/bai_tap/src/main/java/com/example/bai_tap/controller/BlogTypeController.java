@@ -19,8 +19,9 @@ public class BlogTypeController {
     private IBlogTypeService blogTypeService;
 
     @GetMapping()
-    public List<BlogType> getListBlogs() {
-        return this.blogTypeService.getList();
+    public ResponseEntity<BlogType> getListBlogs() {
+        this.blogTypeService.getList();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("{id}")
@@ -35,9 +36,8 @@ public class BlogTypeController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createBlog(@Valid @RequestBody BlogType blogType) {
+    public void createBlog(@Valid @RequestBody BlogType blogType) {
         this.blogTypeService.addNewBlog(blogType);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
