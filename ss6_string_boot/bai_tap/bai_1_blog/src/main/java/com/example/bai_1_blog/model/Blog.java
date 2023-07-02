@@ -17,7 +17,7 @@ public class Blog {
     @Column(columnDefinition = "LONGTEXT")
     private String img;
     @ManyToOne
-    @JoinColumn(name="idType", nullable = false)
+    @JoinColumn(name="id_type", nullable = false)
     private BlogType blogType;
     private boolean flagDelete = false;
 
