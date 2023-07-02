@@ -30,7 +30,6 @@ public class ProductController {
     @GetMapping("/shopping-cart")
     public ModelAndView showCart(@SessionAttribute("cart") Cart cart) {
         ModelAndView modelAndView = new ModelAndView("/cart", "cart", cart);
-        modelAndView.addObject("cart", cart);
         return modelAndView;
     }
 
@@ -42,7 +41,6 @@ public class ProductController {
     @GetMapping("/shop")
     public ModelAndView showShop() {
         ModelAndView modelAndView = new ModelAndView("/shop", "product", productService.findAll());
-        modelAndView.addObject("products", productService.findAll());
         return modelAndView;
     }
 

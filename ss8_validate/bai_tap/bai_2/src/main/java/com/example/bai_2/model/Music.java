@@ -13,17 +13,17 @@ public class Music {
     private String nameOfTheSong;
     private String nameOfSingers;
     private String kindOfMusic;
-    private boolean FlagDelete=false;
+    private boolean flagDelete=false;
 
     public Music() {
     }
 
-    public Music(int id, String nameOfTheSong, String nameOfSingers, String kindOfMusic, boolean FlagDelete) {
+    public Music(int id, String nameOfTheSong, String nameOfSingers, String kindOfMusic, boolean flagDelete) {
         this.id = id;
         this.nameOfTheSong = nameOfTheSong;
         this.nameOfSingers = nameOfSingers;
         this.kindOfMusic = kindOfMusic;
-        this.FlagDelete = FlagDelete;
+        this.flagDelete = flagDelete;
     }
 
     public int getId() {
@@ -59,10 +59,10 @@ public class Music {
     }
 
     public boolean isDelete() {
-        return FlagDelete;
+        return flagDelete;
     }
 
     public void setDelete(boolean delete) {
-        FlagDelete = delete;
+        flagDelete = delete;
     }
 }

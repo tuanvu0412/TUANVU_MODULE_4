@@ -21,6 +21,11 @@
         <input id="kindOfMusic" type="text" th:field="*{kindOfMusic}"/>
         <span style="color: red" th:if="${#fields.hasErrors('kindOfMusic')}" th:errors="*{kindOfMusic}"></span>
     </div>
+    <div>
+        <label for="status">Kind Of Music:</label>
+        <input id="status" type="text" th:field="*{kindOfMusic}"/>
+        <span style="color: red" th:if="${#fields.hasErrors('kindOfMusic')}" th:errors="*{kindOfMusic}"></span>
+    </div>
     <input type="submit"/>
 </form>
 </body>

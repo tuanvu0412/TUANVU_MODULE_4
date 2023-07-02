@@ -7,17 +7,17 @@ import javax.persistence.*;
 public class BlogType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idType;
+    private int id;
     private String name;
 
-    private boolean flagIsDelete=false;
+    private boolean flagDelete=false;
     public BlogType() {
     }
 
-    public BlogType(int idType, String name,boolean flagIsDelete) {
-        this.idType = idType;
+    public BlogType(int id, String name,boolean flagDelete) {
+        this.id = id;
         this.name = name;
-        this.flagIsDelete=flagIsDelete;
+        this.flagDelete=flagDelete;
     }
 
 
@@ -30,18 +30,18 @@ public class BlogType {
     }
 
     public int getIdType() {
-        return idType;
+        return id;
     }
 
-    public void setIdType(int idType) {
-        this.idType = idType;
+    public void setIdType(int id) {
+        this.id = id;
     }
 
     public boolean isFlagIsDelete() {
-        return flagIsDelete;
+        return flagDelete;
     }
 
-    public void setFlagIsDelete(boolean flagIsDelete) {
-        this.flagIsDelete = flagIsDelete;
+    public void setFlagIsDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
     }
 }

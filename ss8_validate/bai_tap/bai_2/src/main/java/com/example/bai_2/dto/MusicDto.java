@@ -24,16 +24,18 @@ public class MusicDto implements Validator {
     @Size(max = 1000)
     @Pattern(regexp = "^[^@;,.\\-=+!#$%&<>]{1,800}$",message = "không được chứa kí tự đặc biệt")
     private String kindOfMusic;
+    private boolean flagDelete=false;
 
     public MusicDto() {
 
     }
 
-    public MusicDto(int id, String nameOfTheSong, String nameOfSingers, String kindOfMusic) {
+    public MusicDto(int id, String nameOfTheSong, String nameOfSingers, String kindOfMusic, boolean flagDelete) {
         this.id = id;
         this.nameOfTheSong = nameOfTheSong;
         this.nameOfSingers = nameOfSingers;
         this.kindOfMusic = kindOfMusic;
+        this.flagDelete=flagDelete;
     }
 
     public int getId() {
@@ -76,5 +78,13 @@ public class MusicDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        flagDelete = flagDelete;
     }
 }
