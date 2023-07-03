@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form>
+    <input type="text" name="search" id="search" placeholder="tìm kiếm ....">
+    <button type="button" onclick="searchBlog()">tìm kiếm</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Content</th>
+        <th>Time</th>
+        <th>BlogType</th>
+    </tr>
+    </thead>
+    <tbody id="listBlogs"></tbody>
+    <tbody id="searchResults"></tbody>
+</table>
+<hr>
+<form>
+    <input placeholder="blogname" name="name" id="name">
+    <input placeholder="blogcontent" name="content" id="content">
+    <input placeholder="blogtime" name="times" id="time">
+    <select id="blogType">
+        <option value="1">life</option>
+        <option value="2">people</option>
+    </select>
+    <button type="button" onclick="onCreatBlogs()">Submit</button>
+</form>
+<div id="list-container">
+</div>
+<button id="load-more-btn">Tải thêm</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    function onCreatBlogs() {
+        const name = $("#name").val();
+        const content = $("#content").val();
+        const times = $("#time").val();
+        const selectedValue = $("#blogsType").val();
+        const blog = {
+            name: name, content, times, blogType: [{id: +selectedValue}]
+        }
+        $.ajax({
+            url: 'http://localhost:8080/blogs',
+            type: 'POST',
+            data: JSON.stringify(blog),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function () {
+                getListBlogs();
+            },
+            error: function () {
+                alert("đã xảy ra lỗi khi thêm blog");
+            }
+        })
+    }
+
+    function getListBlogs() {
+        $.ajax({
+            url: 'http://localhost:8080/blogs',
+            type: 'GET',
+            success: function (data) {
+                let blogStr = '';
+                for (let blog of data) {
+                    blogStr += `
+                    <tr>
+                    <td>${blog.id}</td>
+                    <td>${blog.name}</td>
+                    <td>${blog.content}</td>
+                    <td>${blog.time}</td>
+                    <td>${blog.blogType.name}
+                    </td>
+                    <td><button type="button" onclick="deleteBlog(${blog.id})">Delete</button> </td>
+        </tr>
+            `;
+                }
+                $("#listBlogs").html(blogStr);
+            }
+        })
+    }
+
+    $(document).ready(function () {
+        getListBlogs();
+    })
+     function searchBlog() {
+            let search = $("#search").val();
+            $.ajax({
+                url: 'http://localhost:8080/blogs/search/'+search,
+                type: 'GET',
+                success: function (data) {
+                    let blogStr = '';
+                    for (let blog of data) {
+                        blogStr += `
+                    <tr>
+                    <td>${blog.id}</td>
+                    <td>${blog.name}</td>
+                    <td>${blog.content}</td>
+                    <td>${blog.time}</td>
+                    <td>${blog.blogType.name}
+                    </td>
+                    <td><button type="button" onclick="deleteBlog(${blog.id})">Delete</button> </td>
+        </tr>
+            `;
+                    }
+                    $('#listBlogs').html(blogStr);
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi khi tìm kiếm!');
+                }
+            });
+    }
+    function deleteBlog(id) {
+        $.ajax({
+            url: 'http://localhost:8080/blogs/' + id,
+            type: 'DELETE',
+            success: function () {
+                getListBlogs();
+            },
+            error: function () {
+                alert("không tìm thấy id để xoá")
+            }
+        })
+    }
+    $('#load-more-btn').click(function() {
+        let lastPostId = $('#list-container').val();
+        $.ajax({
+            url: 'http://localhost:8080/blogs/load-more' + lastPostId,
+            type: 'GET',
+            data: { lastPostId: lastPostId },
+            success: function(data) {
+                $('#list-container').append(data);
+            },
+            error: function() {
+               alert("không tìm thấy ")
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -18,4 +18,5 @@ public interface IBlogService {
 
     void remove(int id);
 
+    List<Blog> search( String search);
 }
