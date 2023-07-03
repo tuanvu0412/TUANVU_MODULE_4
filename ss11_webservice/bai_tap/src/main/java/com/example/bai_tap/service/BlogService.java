@@ -18,6 +18,11 @@ public class BlogService implements IBlogService {
 
 
     @Override
+    public List<Blog> getList() {
+        return blogRepo.findAll();
+    }
+
+    @Override
     public void addNewBlog(Blog blog) {
         blogRepo.save(blog);
     }
@@ -40,13 +45,9 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public Page<Blog> findOne(String name, Pageable pageable) {
-        return this.blogRepo.searchByName(name, pageable);
+    public List<Blog> search( String search) {
+        return blogRepo.getBlogByNameContainingAndFlagDeleteIsFalse(search);
     }
 
-    @Override
-    public Page<Blog> findAllByFlagDeleteIsFalse(Pageable pageable) {
-        return blogRepo.findAllByFlagDeleteIsFalse(pageable);
-    }
 
 }

@@ -5,17 +5,17 @@ import com.example.bai_tap.service.IBlogTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.naming.directory.SearchResult;
 import java.util.List;
 
-import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/blogs")
+@CrossOrigin("*")
 public class BlogController {
     @Autowired
     private IBlogService blogService;
@@ -23,9 +23,8 @@ public class BlogController {
     private IBlogTypeService blogTypeService;
 
     @GetMapping()
-    public ResponseEntity<Blog> getListBlogs() {
-         this.blogService.getList();
-         return  new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<List<Blog>> getListBlogs() {
+         return new ResponseEntity<>(blogService.getList(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
@@ -54,7 +53,7 @@ public class BlogController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         if (blogService.findById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -63,4 +62,22 @@ public class BlogController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+
+    @GetMapping("/search/{search}")
+    public ResponseEntity<List<Blog>> search(@PathVariable(name="search") String search) {
+        List<Blog> blogList = blogService.search(search);
+        if(blogList.size()==0){
+            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(blogList,HttpStatus.OK);
+        }
+    }
+//    @GetMapping("/load-more/{id}")
+//    public ResponseEntity<?> loadMorePosts(@PathVariable(name="id") int id) {
+//        if(blogService.findById(id)==null){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }else {
+//           return new ResponseEntity<>(blogService.findById(id),HttpStatus.OK);
+//        }
+//    }
 }

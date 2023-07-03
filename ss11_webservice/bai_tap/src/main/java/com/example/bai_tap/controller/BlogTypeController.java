@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -35,7 +34,7 @@ public class BlogTypeController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createBlog(@Valid @RequestBody BlogType blogType) {
+    public ResponseEntity<String> createBlog( @RequestBody BlogType blogType) {
         this.blogTypeService.addNewBlog(blogType);
         return new ResponseEntity<>(HttpStatus.OK);
     }

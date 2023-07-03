@@ -12,8 +12,9 @@ import java.util.Date;
 import java.util.List;
 
 public interface IBlogRepo extends JpaRepository<Blog, Integer> {
-    @Query(value = "select * from Blogs AS b where upper(b.name) like concat(upper(:name),'%' )", nativeQuery = true)
-    Page<Blog> searchByName(@Param(value = "name") String name, Pageable pageable);
+//    @Query(value = "select * from Blogs AS b where upper(b.name) like concat(upper(:name),'%' )", nativeQuery = true)
+//    Blog searchByName(@Param(value = "name") String name);
+    List<Blog> getBlogByNameContainingAndFlagDeleteIsFalse(String search);
 
     //   @Query(value ="update  Blogs set name= :name,content= :content,times=:times where id= :id",nativeQuery = true )
 //    void updateBlogsByIdIs(Blog blog);
