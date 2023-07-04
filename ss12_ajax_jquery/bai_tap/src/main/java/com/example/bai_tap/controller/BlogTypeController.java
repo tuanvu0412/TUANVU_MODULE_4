@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/blogTypes")
+@CrossOrigin("*")
 public class BlogTypeController {
     @Autowired
     private IBlogTypeService blogTypeService;
