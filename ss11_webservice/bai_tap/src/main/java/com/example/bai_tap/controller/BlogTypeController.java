@@ -4,6 +4,7 @@ package com.example.bai_tap.controller;
 import com.example.bai_tap.model.Blog;
 import com.example.bai_tap.model.BlogType;
 import com.example.bai_tap.service.IBlogTypeService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,8 @@ public class BlogTypeController {
     private IBlogTypeService blogTypeService;
 
     @GetMapping()
-    public List<BlogType> getListBlogs() {
-        return this.blogTypeService.getList();
+    public ResponseEntity<List<BlogType>> getListBlogs() {
+        return new ResponseEntity<>(this.blogTypeService.getList(),HttpStatus.OK);
     }
 
     @GetMapping("{id}")
@@ -34,9 +35,8 @@ public class BlogTypeController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createBlog( @RequestBody BlogType blogType) {
+    public void createBlog( @RequestBody BlogType blogType) {
         this.blogTypeService.addNewBlog(blogType);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

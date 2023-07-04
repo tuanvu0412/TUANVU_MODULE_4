@@ -92,8 +92,9 @@
     })
      function searchBlog() {
             let search = $("#search").val();
+            let url=`http://localhost:8080/blogs/search/${search}`
             $.ajax({
-                url: 'http://localhost:8080/blogs/search/'+search,
+                url: url,
                 type: 'GET',
                 success: function (data) {
                     let blogStr = '';
